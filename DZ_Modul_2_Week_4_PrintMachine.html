@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Machine</title>
+</head>
+<body>
+    <script>
+        // Задание №1
+        // class PrintMachine{
+        //     constructor (fontsize, color, fontfamily){
+        //         this.fontsize = fontsize;
+        //         this.color = color;
+        //         this.fontfamily = fontfamily;
+        //     }
+        //     print(){
+        //         let text = "Hello! What are you doing here?"
+        //         return `<span style="font-size: ${this.fontsize}; 
+        //         color: ${this.color}; font-family: ${this.fontfamily};">${text}</span>`;
+        //     }
+        // }  let textStyle = new PrintMachine ("50px", "red", "Times New Roman', Times, serif");
+        //    document.write(textStyle.print())
+
+        // Задание №2
+        
+       
+// class PrintNews {
+//     constructor(header, text, teg, date) {
+//         this.header = header;
+//         this.text = text;
+//         this.teg = teg;
+//         this.date = date;
+//     }
+
+    
+//     getDaysAgo() {
+//         const currentDate = new Date();
+//         const timeDifference = currentDate - this.date;
+//         const daysDifference = Math.floor(timeDifference / (1000 * 3600 * 24));
+//         return daysDifference;
+//     }
+
+//     print() {
+//         let textHeader = this.header;
+//         let daysAgo = this.getDaysAgo();
+//         let textDate = daysAgo > 0 ? `${daysAgo} ${daysAgo === 1 ? 'день' : 'дня'} назад` : 'Сегодня';
+//         let textMain = this.text;
+//         let textFooter = this.teg;
+
+//         return `<h1>${textHeader}</h1>
+//                 <div>${textDate}</div>
+//                 <pre>${textMain}</pre>
+//                 <div class="footer">${textFooter}</div>`;
+//     }
+// }
+
+
+// let getPrintNews = new PrintNews(
+//     "What is Lorem Ipsum?",
+//     "Lorem ipsum dolor sit amet, consectetur adipisicing elit.</br>Consequatur praesentium laboriosam exercitationem repellat architecto,<br/>quidem pariatur vero optio ut tempora ex beatae natus alias ullam odit ab consectetur voluptatum maxime.",
+//     "#lorem #ipsum #text",
+//     new Date(Date.now() - (1 * 24 * 3600 * 1000))
+// );
+
+// document.write(getPrintNews.print());
+
+// Задание №3
+
+class PrintNews {
+    constructor() {
+        this.newsArr = [];
+    }
+
+    get newsCount() {
+        return this.newsArr.length;
+    }
+
+    printAllNews() {
+        this.newsArr.forEach(news => {
+            console.log(news);
+        });
+    }
+
+    addNews(news) {
+        this.newsArr.push(news);
+    }
+
+    deleteNews(index) {
+        this.newsArr.splice(index, 1);
+    }
+
+    sortByDate() {
+        this.newsArr.sort((a, b) => b.date - a.date);
+    }
+
+    searchByTag(tag) {
+        return this.newsArr.filter(news => news.tags.includes(tag));
+    }
+}
+
+
+const news = new PrintNews();
+
+news.addNews({title: "News 1", date: new Date(2021, 10, 15), tags: ["tag1", "tag2"], content: "Lorem ipsum"});
+news.addNews({title: "News 2", date: new Date(2021, 10, 10), tags: ["tag2", "tag3"], content: "Dolor sit amet"});
+news.addNews({title: "News 3", date: new Date(2021, 10, 5), tags: ["tag1"], content: "Consectetur adipisicing"});
+
+console.log("Total number of news:", news.newsCount);
+console.log("All news:");
+news.printAllNews();
+
+news.deleteNews(1);
+console.log("Total number of news after deletion:", news.newsCount);
+
+news.sortByDate();
+console.log("News after sorting by date:");
+news.printAllNews();
+
+const tagSearchResult = news.searchByTag("tag1");
+console.log("News with tag 'tag1':", tagSearchResult);
+    </script>
+</body>
+</html>
